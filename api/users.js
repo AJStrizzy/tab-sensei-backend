@@ -97,6 +97,7 @@ router.get('/comments/:name', (req, res) => {
       // console.log();
     }).catch((error) => res.send({ error }))
 })
+
 // GET usernames
 router.get('/tabs/:tabid', (req, res) => {
     // const name = req.params.name;
@@ -106,5 +107,10 @@ router.get('/tabs/:tabid', (req, res) => {
       // console.log();
     }).catch((error) => res.send({ error }))
 })
+
+// router.put('/tabs/:id', (req, res) => {
+//   db.User.update({ _id: req.params.id }, { $addToSet} : {})
+//
+//  })
 
 module.exports = router;
