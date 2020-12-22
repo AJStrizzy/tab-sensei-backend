@@ -88,5 +88,23 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     })
 })
 
+// GET a user's comments:
+router.get('/comments/:name', (req, res) => {
+    // const name = req.params.name;
+    db.User.find({ name : req.params.name }).select("userProfile.comments.content")
+    .then((user) => {
+      res.status(201).json({ user })
+      // console.log();
+    }).catch((error) => res.send({ error }))
+})
+// GET usernames
+router.get('/tabs/:tabid', (req, res) => {
+    // const name = req.params.name;
+    db.User.find({ "userProfile.comments.songsterr_id" : req.params.tabid }).select("name")
+    .then((user) => {
+      res.status(201).json({ user })
+      // console.log();
+    }).catch((error) => res.send({ error }))
+})
 
 module.exports = router;
