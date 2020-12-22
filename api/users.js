@@ -4,7 +4,7 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-const JWT_SECRET = process.env.JWT_SECRET
+const { JWT_SECRET } = require('../config/keys');
 
 const db = require('../models')
 
@@ -88,12 +88,5 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     })
 })
 
-router.get('/song/:id', (req, res) => {
-    db.User.find({ "userProfile.comments.songsterr_id" : req.params.id }).then((res) => {
-      const usernames = res.users.userProfile.username;
-      console.log(usernames);
-      // returns users who have left a comment on this particular song tab
-    }).catch((error) => res.send({ error }))
-})
 
 module.exports = router;
